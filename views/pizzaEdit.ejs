@@ -1,0 +1,45 @@
+<%- include("head.ejs") %> 
+
+<body>
+  <%- include("navbar.ejs") %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
+        <div class="table-responsive">
+              <table class="table table-striped table-sm">
+                <thead>
+                  <tr>
+                    <th>Название</th>
+                    <th>Ссылка на изображение</th>
+                    <th>Название категории</th>
+                    <th>Цена</th>
+                  </tr>
+                </thead>
+                <form action="/admin/pizzas/edit/<%= _id%>" method="post">
+
+                <tbody>
+                    <tr>
+                      <td><input type="text" name="title" value="<%= title %>" ></td>
+                      <td style="display: flex; flex-direction: column; justify-content: center;">
+                         <img src="<%= img %>" style="width: 100px; height: 100px; object-fit: contain;" alt="">
+                         <input type="text" name="img" value="<%= img %>" ></td>
+                      <td><input type="text" name="categoryName" value="<%= categoryName %>" ></td>
+                      <td><input type="number" name="price" value="<%= price %>" ></td>
+                    </tr>
+                </tbody>
+              </table>
+              <button type="submit" class="btn btn-success">Применить изменения</button>
+            </form>
+
+            </div>
+
+      </div>
+    </div>
+  </div> 
+
+
+<%- include("footer.ejs") %> 
+</body>
+</html>

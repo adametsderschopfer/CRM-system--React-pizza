@@ -1,0 +1,49 @@
+<%- include("head.ejs")%>
+<body>
+
+  <%- include("navbar.ejs") %> 
+
+  <div class="container-fluid">
+    <div class="row">
+      <%- include("sidebar.ejs") %> 
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
+        <h2 style="padding: 10px;">Заказы</h2>
+        <div class="table-responsive">
+              <% if (orders) { %>
+          <table class="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>№</th>
+                <th>Телефон</th>
+                <th>Колличество товаров</th>
+                <th>Товар</th>
+                <th>Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+                <% for(let i = 0; i < orders.length; i++) { %> 
+                  <tr>
+                    <td><%= i + 1 %></td>
+                    <td><%= orders[i].phone%></td>
+                    <td><%= orders[i].order.length%></td>
+                    <td><form action="/admin/order/<%= orders[i]._id %>" method="get"><button class="btn btn-success" type="submit">Посмотерть все товары</button></form></td>
+                    <td><form action="/admin/deleteorder" method="post"> <input type="hidden" name="pizzaId" value="<%=orders[i]._id%>"> <button type="submit" class="btn btn-danger">Удалить заказ</button></form></td>
+                    
+                    
+
+                  </tr>  
+                <% } %>  
+
+            </tbody>
+          </table>
+              <% } else { %>  
+                <p><b>Заказов пока нет!</b></p>
+                      <% } %>  </div>
+      </div>
+    </div>
+  </div>
+
+  <%- include("footer.ejs") %>  
+</body>
+</html>

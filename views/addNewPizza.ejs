@@ -1,0 +1,44 @@
+<%- include("head.ejs") %> 
+
+<body>
+  <%- include("navbar.ejs") %>
+
+  <div class="container pt-3">
+    <div class="row">
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
+        <form method="POST" action="/admin/pizzas/addnewpizza">
+          <div class="form-group">
+            <label for="title">Наименование товара</label>
+            <input type="text" name="title" class="form-control" id="title">
+          </div>
+          <div class="form-group">
+            <label for="LinkForImg">Ссылка на изображение</label>
+            <input type="text" class="form-control" name="img" id="LinkForImg">
+          </div>
+
+          <div class="form-group form-check">
+            <label for="catname">Цена</label>
+            <input type="number" class="form-control" name="price" id="catname">
+          </div>
+
+          <div class="form-group">
+            <select class="form-control form-control-sm" name="categoryName">
+              <% for(let k of generalCat) { %> 
+                <option> <%= k %> </option>
+              <% } %> 
+            </select>
+          </div>
+
+          <button type="submit" class="btn btn-primary">Добавить товар</button>
+        </form>
+        
+      </div>
+    </div>
+  </div> 
+
+
+<%- include("footer.ejs") %> 
+</body>
+</html>
+

@@ -1,0 +1,45 @@
+<%- include("head.ejs") %> 
+
+<body>
+  <%- include("navbar.ejs") %>
+
+  <div class="container-fluid">
+    <div class="row">
+      <%- include("sidebar.ejs") %> 
+      <div style="display: flex; flex-direction: column; width: 100%;">
+        
+        <div style="display: flex; align-items: center;"><h2 style="padding: 15px 25px;">Пиццы</h2> <a href="/admin/pizzas/addnewpizza" class="btn btn-success">Добавить товар</a></div>
+        <div class="table-responsive">
+              <% if (pizzas) { %>
+
+                <div class="container">
+                  <div class="row" style="flex-wrap: wrap !important;">
+                  
+                    <% for(let k of pizzas) { %> 
+                      <div class="card m-auto " style="width: 18rem; margin-bottom: 15px !important;">
+                        <img src="<%=k.img%>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"><b><%= k.title %></b></h5>
+                          <p class="card-text">Категория: <b><%= k.categoryName %></b></p>
+                          <p class="card-text">Цена: <b><%= k.price %> ₽</b></p>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item"><a href="/admin/pizzas/edit/<%= k._id %>" class="btn btn-success">Редактировать товар</a></li>
+                          <li class="list-group-item"><a href="/admin/pizzas/deletepizza/<%= k._id %>" class="btn btn-danger">Удалить товар</a></li>
+                        </ul>
+                      </div>  
+                    <% } %> 
+                  </div>
+                </div>
+          
+              <% } else { %>  
+                <p><b>Пицц пока нет!</b></p>
+                      <% } %>  </div>
+      </div>
+    </div>
+  </div> 
+
+
+<%- include("footer.ejs") %> 
+</body>
+</html>
